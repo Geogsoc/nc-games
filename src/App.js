@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Comment_card from "./Components/Comment_card";
+import Home from "./Components/Home";
+import Navbar from "./Components/Navbar";
+import ReviewCard from "./Components/ReviewCard";
+import Review from "./Components/Review";
 
 function App() {
+  // const [isLoading, setIsLoading] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/reviews/:category" element={<Home />} />
+          <Route path="/review/:review_id" element={<Review />} />
+        </Routes>
+      </div>
+      ;
+    </BrowserRouter>
   );
 }
 

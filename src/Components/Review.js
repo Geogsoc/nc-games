@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { getReview } from "../Utils/api";
 import { useParams } from "react-router";
 
+import CommentCard from "./CommentCard";
+import Votes from "./Votes";
+
 export default function Review() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -13,7 +16,6 @@ export default function Review() {
     setIsLoading(true);
     getReview(review_id)
       .then((reviewFromApi) => {
-        console.log(reviewFromApi, "single review");
         setIsLoading(false);
         setReview(reviewFromApi[0]);
       })
@@ -24,17 +26,24 @@ export default function Review() {
   }, [review_id]);
 
   return (
-    <div>
+    <>
       <section className="singlereview">
         <h2>{review.owner}</h2>
         <h3>{review.title}</h3>
-        <img className="photo" src={review.review_img_url} alt={review.title} />
+        <img
+          className="singlephoto"
+          src={review.review_img_url}
+          alt={review.title}
+        />
         <p>{review.review_body}</p>
-        <p> votes: {review.votes}</p>
+        <Votes votes={review.votes} review_id={review.review_id} />
       </section>
       <section>
         <h2>Comments</h2>
+        <div>
+          <CommentCard review_id={review.review_id} />
+        </div>
       </section>
-    </div>
+    </>
   );
 }

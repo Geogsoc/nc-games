@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function ReviewCard({ review }) {
-  console.log(review, "from ReviewCard");
+  // console.log(review, "from ReviewCard");
   return (
     <div>
       <Link to={`/review/${review.review_id}`}>
@@ -16,6 +16,7 @@ export default function ReviewCard({ review }) {
             alt={review.title}
           />
           <p>Votes: {review.votes}</p>
+
           <p>Comments: {review.comment_count}</p>
           <p>Category: {review.category}</p>
         </div>

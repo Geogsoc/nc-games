@@ -8,21 +8,36 @@ export default function Home() {
   const [isError, setIsError] = useState(false);
   const [reviews, setreviews] = useState([]);
 
-  let { category } = useParams();
+  let { category, sort_by, order } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews(category)
+    getReviews(category, sort_by, order)
       .then((reviewsFromApi) => {
         setIsLoading(false);
         setreviews(reviewsFromApi);
       })
-      .catch((err) => {
+      .catch(() => {
         setIsLoading(false);
         setIsError(true);
       });
   }, [category]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    getReviews(category, sort_by, order)
+      .then((reviewsFromApi) => {
+        setIsLoading(false);
+        setreviews(reviewsFromApi);
+      })
+      .catch(() => {
+        setIsLoading(false);
+        setIsError(true);
+      });
+  }, [sort_by, order]);
+
   let nameCapitalized = "";
+
   if (category) {
     nameCapitalized = category.charAt(0).toUpperCase() + category.slice(1);
   }

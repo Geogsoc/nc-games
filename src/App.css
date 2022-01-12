@@ -55,6 +55,11 @@
   border-radius: 1rem;
   max-height: 290px;
 }
+.singlephoto {
+  margin: 1rem;
+  border-radius: 1rem;
+  max-width: 340px;
+}
 p {
   padding: 0.5rem;
 }
@@ -82,4 +87,8 @@ section {
     height: 550px;
     min-width: 450px;
   }
+}
+
+ul {
+  list-style-type: none;
 }

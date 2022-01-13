@@ -6,9 +6,12 @@ export default function ReviewCard({ review }) {
   // console.log(review, "from ReviewCard");
   return (
     <div>
-      <Link to={`/review/${review.review_id}`}>
+      <Link
+        style={{ textDecoration: "none" }}
+        to={`/review/${review.review_id}`}
+      >
         <div className="card">
-          <p>Username: {review.owner} </p>
+          <h3>User: {review.owner} </h3>
           <p>{review.title}</p>
           <img
             className="photo"
@@ -25,6 +28,8 @@ export default function ReviewCard({ review }) {
   );
 }
 
-<Link to={"/"}>
+{
+  /* <Link to={"/"}>
   <p className="navitem">Home</p>
-</Link>;
+</Link>; */
+}

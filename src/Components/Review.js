@@ -19,11 +19,11 @@ export default function Review() {
         setIsLoading(false);
         setReview(reviewFromApi[0]);
       })
-      .catch((err) => {
+      .catch(() => {
         setIsLoading(false);
         setIsError(true);
       });
-  }, [review_id]);
+  }, []);
 
   return (
     <>

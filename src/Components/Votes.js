@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { patchUser } from "../Utils/api";
 
 export default function Votes({ votes, review_id }) {
-  const [commentVotes, setCommentVotes] = useState(votes);
+  const [commentVotes, setCommentVotes] = useState(0);
 
   const [isError, setIsError] = useState(false);
   const [disable, setDisable] = useState(false);
   console.log(votes, "votes here in Votes component");
+  console.log(commentVotes, "comment votes in Votes component");
 
   const handleClick = () => {
     setDisable(true);
@@ -20,7 +21,7 @@ export default function Votes({ votes, review_id }) {
   };
   return (
     <div>
-      <p>Votes: {commentVotes}</p>
+      <p>Votes: {commentVotes + votes}</p>
       <button disabled={disable} onClick={handleClick}>
         Agree
       </button>

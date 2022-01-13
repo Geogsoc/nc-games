@@ -21,6 +21,7 @@
   justify-content: flex-start;
   background-color: beige;
   border-radius: 1rem;
+  min-width: fit-content;
 }
 .navitem {
   margin: 1rem;

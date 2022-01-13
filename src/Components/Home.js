@@ -11,19 +11,6 @@ export default function Home() {
 
   let { category, sort_by, order } = useParams();
 
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   getReviews(category, sort_by, order)
-  //     .then((reviewsFromApi) => {
-  //       setIsLoading(false);
-  //       setreviews(reviewsFromApi);
-  //     })
-  //     .catch(() => {
-  //       setIsLoading(false);
-  //       setIsError(true);
-  //     });
-  // }, [category]);
-
   useEffect(() => {
     setIsLoading(true);
     getReviews(category, sort_by, order)

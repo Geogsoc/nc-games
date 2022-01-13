@@ -27,23 +27,29 @@ export default function Review() {
 
   return (
     <>
-      <section className="singlereview">
-        <h2>{review.owner}</h2>
-        <h3>{review.title}</h3>
-        <img
-          className="singlephoto"
-          src={review.review_img_url}
-          alt={review.title}
-        />
-        <p>{review.review_body}</p>
-        <Votes votes={review.votes} review_id={review.review_id} />
-      </section>
-      <section>
-        <h2>Comments</h2>
-        <div>
-          <CommentCard review_id={review.review_id} />
-        </div>
-      </section>
+      {isError ? (
+        <h2>I think you have made an error, please have another go!</h2>
+      ) : (
+        <>
+          <section className="reviewslist">
+            <h2>{review.owner}</h2>
+            <h3>{review.title}</h3>
+            <img
+              className="singlephoto"
+              src={review.review_img_url}
+              alt={review.title}
+            />
+            <p>{review.review_body}</p>
+            <Votes votes={review.votes} review_id={review.review_id} />
+          </section>
+          <section className="comment">
+            <h2>Comments</h2>
+            <div>
+              <CommentCard review_id={review.review_id} />
+            </div>
+          </section>
+        </>
+      )}
     </>
   );
 }

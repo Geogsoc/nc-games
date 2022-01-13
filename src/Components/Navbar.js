@@ -1,7 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { getCategories } from "../Utils/api";
-import { Link, useNavigate, useParams } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -14,6 +13,3 @@ export default function Navbar() {
     </div>
   );
 }
-
-// tag={Link}
-// to={`/reviews/${category.slug}`}

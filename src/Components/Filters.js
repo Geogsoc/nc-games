@@ -26,9 +26,6 @@ export default function Filters() {
     } else {
       navigate(`/${valueObj.sort_by}/${valueObj.order}`);
     }
-
-    // navigate();
-    console.log(category, "category from the navbar");
   };
   return (
     <div className="wrapper">

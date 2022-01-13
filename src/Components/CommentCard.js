@@ -1,39 +1,48 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { getComments, postComment } from "../Utils/api";
+import { getComments, postComment, deleteComment } from "../Utils/api";
 
 export default function Comment_card({ review_id }) {
+  const username = "jessjelly";
   const [comments, setComments] = useState([]);
+  const [isError, setIsError] = useState(false);
   const [newComment, setnewComment] = useState({
     username: "",
     body: "",
   });
 
-  console.log(newComment, "new comment in the comment-card");
-
   useEffect(() => {
     getComments(review_id).then((commentsFromApi) => {
       setComments(commentsFromApi);
     });
-  }, [review_id]);
+  }, [review_id, comments]);
 
   const handleChange = (event) => {
     const { value } = event.target;
     const copyCommentObj = { ...newComment };
-    copyCommentObj.username = "jessjelly";
+    copyCommentObj.username = username;
 
     copyCommentObj[event.target.name] = value;
 
     setnewComment(copyCommentObj);
   };
   const handleSubmit = (event) => {
+    setIsError(false);
     event.preventDefault();
 
-    postComment(review_id, newComment);
+    postComment(review_id, newComment).catch(() => {
+      setIsError(true);
+    });
     setnewComment({
       username: "",
       body: "",
     });
+  };
+
+  const handleDelete = (event) => {
+    const revId = event.target.value;
+
+    deleteComment(revId);
   };
   return (
     <div>
@@ -48,16 +57,28 @@ export default function Comment_card({ review_id }) {
               value={newComment.body}
             />
           </label>
+
           <button onClick={handleSubmit}>Submit</button>
         </form>
+        {isError && (
+          <h3>
+            I dont want to waste my time posting an empty comment, please try
+            again
+          </h3>
+        )}
       </div>
       <ul>
         {comments.map((comment) => {
           return (
-            <li key={comment.comment_id}>
+            <li className="commentcard" key={comment.comment_id}>
               <p>Author: {comment.author}</p>
               <p>" {comment.body} "</p>
               <p>Votes: {comment.votes}</p>
+              {comment.author === username && (
+                <button value={comment.comment_id} onClick={handleDelete}>
+                  Delete
+                </button>
+              )}
             </li>
           );
         })}

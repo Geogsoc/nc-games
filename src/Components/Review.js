@@ -39,7 +39,7 @@ export default function Review() {
               src={review.review_img_url}
               alt={review.title}
             />
-            <p>{review.review_body}</p>
+            <p className="reviewBody">{review.review_body}</p>
             <Votes votes={review.votes} review_id={review.review_id} />
           </section>
           <section className="comment">

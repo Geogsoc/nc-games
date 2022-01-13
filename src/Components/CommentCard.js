@@ -62,17 +62,16 @@ export default function Comment_card({ review_id }) {
         </form>
         {isError && (
           <h3>
-            I dont want to waste my time posting an empty comment, please try
-            again
+            There is no point posting an empty comment, please try again! Thanks
           </h3>
         )}
       </div>
-      <ul>
+      <ul className="commentcardparent">
         {comments.map((comment) => {
           return (
             <li className="commentcard" key={comment.comment_id}>
               <p>Author: {comment.author}</p>
-              <p>" {comment.body} "</p>
+              <p className="commentbody">" {comment.body} "</p>
               <p>Votes: {comment.votes}</p>
               {comment.author === username && (
                 <button value={comment.comment_id} onClick={handleDelete}>

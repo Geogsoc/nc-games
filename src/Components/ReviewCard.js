@@ -16,11 +16,13 @@ export default function ReviewCard({ review }) {
 
             <p>{review.title}</p>
           </div>
-          <img
-            className="photo"
-            src={review.review_img_url}
-            alt={review.title}
-          />
+          <div className="photoParent">
+            <img
+              className="photo"
+              src={review.review_img_url}
+              alt={review.title}
+            />
+          </div>
           <div>
             <p>Votes: {review.votes}</p>
 

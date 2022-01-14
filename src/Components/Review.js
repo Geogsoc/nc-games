@@ -44,7 +44,7 @@ export default function Review() {
           </section>
           <section className="comment">
             <h2>Comments</h2>
-            <div>
+            <div className="commentboxparent">
               <CommentCard review_id={review.review_id} />
             </div>
           </section>

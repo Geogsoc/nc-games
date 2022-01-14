@@ -45,8 +45,8 @@ export default function Comment_card({ review_id }) {
     deleteComment(revId);
   };
   return (
-    <div>
-      <div>
+    <div className="commentboxchild">
+      <div className="commentbox">
         <form>
           <label>
             What do you think?:

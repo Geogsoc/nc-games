@@ -46,6 +46,7 @@ export default function Comment_card({ review_id }) {
   };
   return (
     <div className="commentboxchild">
+      <div>You are logged in as: {username}</div>
       <div className="commentbox">
         <form>
           <label>

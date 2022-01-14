@@ -1,15 +1,46 @@
 import React, { useEffect, useState } from "react";
-import { getReviews } from "../Utils/api";
-import { useParams } from "react-router";
+import { getReviews, getCategories } from "../Utils/api";
+import { useParams, useNavigate } from "react-router";
 import ReviewCard from "./ReviewCard";
-import Filters from "./Filters";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [reviews, setreviews] = useState([]);
 
-  let { category, sort_by, order } = useParams();
+  const [sort_by, setSortby] = useState(null);
+  const [order, setOrder] = useState(null);
+
+  //
+  const [categories, setCategories] = useState([]);
+  // { slug: "All Categories" }
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    getCategories().then((categoriesFromApi) => {
+      // const copycategories = { ...categories };
+      // categoriesFromApi.unshift(copycategories);
+
+      setCategories(categoriesFromApi);
+    });
+  }, []);
+
+  const handleCategory = (event) => {
+    // console.log(event.target.value);
+    // if (event.target.value === "All Categories") {
+    //   navigate(`/`);
+    // } else {
+    navigate(`/reviews/${event.target.value}`);
+    // }
+  };
+  const handleSort = (event) => {
+    const valueObj = JSON.parse(event.target.value);
+
+    setSortby(valueObj.sort_by);
+    setOrder(valueObj.order);
+  };
+
+  let { category } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
@@ -42,7 +73,43 @@ export default function Home() {
             <div>
               <h1>{nameCapitalized} Game Reviews</h1>
 
-              <Filters />
+              <div className="wrapper">
+                <label className="navitem">
+                  Category{" "}
+                  <select onChange={handleCategory}>
+                    {categories.map((category) => {
+                      return (
+                        <option key={category.slug} value={category.slug}>
+                          {category.slug}
+                        </option>
+                      );
+                    })}
+                  </select>{" "}
+                </label>
+                <label className="navitem">
+                  Sort by
+                  <select onChange={handleSort}>
+                    <option value='{"sort_by":"created_at", "order": "DESC"}'>
+                      Age descending
+                    </option>
+                    <option value='{"sort_by":"created_at", "order": "ASC"}'>
+                      Age ascending
+                    </option>
+                    <option value='{"sort_by":"comment_count", "order": "DESC"}'>
+                      Comments descending
+                    </option>
+                    <option value='{"sort_by":"comment_count", "order": "ASC"}'>
+                      Comments asccending
+                    </option>
+                    <option value='{"sort_by":"votes", "order": "DESC"}'>
+                      Votes decending
+                    </option>
+                    <option value='{"sort_by":"votes", "order": "ASC"}'>
+                      Votes ascending
+                    </option>
+                  </select>
+                </label>
+              </div>
               <ul className="wrapper">
                 {reviews.map((review) => {
                   return (

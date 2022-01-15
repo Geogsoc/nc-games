@@ -61,6 +61,7 @@ export default function Comment_card({ review_id }) {
 
           <button onClick={handleSubmit}>Submit</button>
         </form>
+        <div></div>
         {isError && (
           <h3>
             There is no point posting an empty comment, please try again! Thanks
@@ -75,7 +76,11 @@ export default function Comment_card({ review_id }) {
               <p className="commentbody">" {comment.body} "</p>
               <p>Votes: {comment.votes}</p>
               {comment.author === username && (
-                <button value={comment.comment_id} onClick={handleDelete}>
+                <button
+                  class="button"
+                  value={comment.comment_id}
+                  onClick={handleDelete}
+                >
                   Delete
                 </button>
               )}

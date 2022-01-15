@@ -25,7 +25,7 @@ export default function Review() {
         setIsLoading(false);
         setIsError(true);
       });
-  }, [review_id]);
+  }, []);
 
   return (
     <>

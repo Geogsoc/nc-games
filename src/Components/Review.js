@@ -12,7 +12,6 @@ export default function Review() {
 
   let { review_id } = useParams();
 
-  console.log(review_id);
   useEffect(() => {
     setIsLoading(true);
 
@@ -25,7 +24,7 @@ export default function Review() {
         setIsLoading(false);
         setIsError(true);
       });
-  }, []);
+  }, [review_id]);
 
   return (
     <>

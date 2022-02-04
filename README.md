@@ -12,6 +12,8 @@ If you agree with a selected review why dont you click agree to let them know.
 
 The backend of the project can be found here https://github.com/Geogsoc/ncgame2021
 
+The project uses Node.js v17.1.0
+
 
 
 
